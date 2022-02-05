@@ -5,9 +5,10 @@ import Article from '@/components/Article'
 import markdownToHtml from '@/lib/markdown'
 import DateString from '@/components/DateString'
 import { deploymentUrl, imageLink } from '@/lib/data'
+import { getOtherBlogs, getPost } from '@/lib/api'
 const MorePosts = dynamic(() => import('@/components/more-posts'))
 
-export default function Post({ content, post, morePosts }) {
+export default function Post({ post, morePosts }) {
   const SEODetails = {
     description: post.content.intro,
     pubDate: post.first_published_at,
@@ -41,13 +42,21 @@ export default function Post({ content, post, morePosts }) {
 }
 
 export async function getStaticProps({ params }) {
-  const blogFetch = await fetch(`${deploymentUrl}/api/blog/${params.slug}`)
-  if (!blogFetch.ok) return { notFound: true }
-  const blogData = await blogFetch.json()
-  blogData['post']['content']['long_text'] = await markdownToHtml(blogData.post.content.long_text)
-  return {
-    props: { ...blogData },
-    revalidate: 60,
+  // Once deployed directly fetch from the `deployedUrl/api/blog/slug`, look at github.com/rishi-raj-jain/rishi.app for future reference.
+  try {
+    const items = []
+    const data = await getPost(params.slug)
+    const { first_published_at, full_slug } = data['post']
+    const appendFirst = (item) => (item.length ? items.push(item[0]) : null)
+    appendFirst(await getOtherBlogs(first_published_at, full_slug, 1, true))
+    appendFirst(await getOtherBlogs(first_published_at, full_slug, 1, false))
+    data['post']['content']['long_text'] = await markdownToHtml(data.post.content.long_text)
+    return {
+      props: { morePosts: items, post: data['post'] },
+      revalidate: 60,
+    }
+  } catch {
+    return { notFound: true }
   }
 }
 
