@@ -8,7 +8,7 @@ import RichTextResolver from 'storyblok-js-client/dist/rich-text-resolver.cjs'
 
 const Blogs = ({ allPosts, recommendedPosts, blogsTagline }) => {
   const SEODetails = {
-    title: `Blogs - Rishi Raj Jain`,
+    title: `Blogs - Jane Doe`,
     canonical: `${deploymentUrl}/blogs`,
   }
 

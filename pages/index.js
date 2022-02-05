@@ -4,6 +4,7 @@ import SEO from '@/components/Seo'
 import { deploymentUrl } from '@/lib/data'
 import { shimmer, toBase64 } from '@/lib/shimmer'
 import SocialLinks from '@/components/social-links'
+import imageHolder from '../public/static/favicon-image.jpg'
 import RichTextResolver from 'storyblok-js-client/dist/rich-text-resolver.cjs'
 
 const Home = ({ homeTagline }) => {
@@ -23,9 +24,9 @@ const Home = ({ homeTagline }) => {
               blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(1400, 720))}`}
             />
           </div>
-          <h1 className="mt-5 md:mt-0 font-bold text-2xl sm:text-5xl">Rishi Raj Jain</h1>
+          <h1 className="mt-5 md:mt-0 font-bold text-2xl sm:text-5xl">Jane Doe</h1>
           <h2 className="text-center md:text-left mt-5 text-lg sm:text-xl text-gray-500 dark:text-white">
-            Solutions Engineer at Layer0 by Limelight
+            Creation of Rishi Raj Jain
           </h2>
           <div className="flex flex-row space-x-5">
             <SocialLinks />
@@ -44,10 +45,9 @@ const Home = ({ homeTagline }) => {
               width={330}
               height={440}
               quality={50}
+              src={imageHolder}
               placeholder="blur"
               className="rounded object-cover"
-              src={`${deploymentUrl}/static/favicon-image.jpg`}
-              blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(1400, 720))}`}
             />
           </div>
         </div>

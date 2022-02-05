@@ -6,7 +6,7 @@ import RichTextResolver from 'storyblok-js-client/dist/rich-text-resolver.cjs'
 
 const About = ({ Timeline, aboutTagline }) => {
   const SEODetails = {
-    title: `About Me - Rishi Raj Jain`,
+    title: `About Me - Jane Doe`,
     canonical: `${deploymentUrl}/about`,
   }
   return (

@@ -5,7 +5,7 @@ import Article from '@/components/Article'
 import markdownToHtml from '@/lib/markdown'
 import DateString from '@/components/DateString'
 import { deploymentUrl, imageLink } from '@/lib/data'
-const MorePosts = dynamic(() => import('@/components/blog/more-posts'))
+const MorePosts = dynamic(() => import('@/components/more-posts'))
 
 export default function Post({ content, post, morePosts }) {
   const SEODetails = {
