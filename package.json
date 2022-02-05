@@ -1,0 +1,46 @@
+{
+  "name": "layer0-storyblok-nextjs-portfolio-starter",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "export": "next export",
+    "layer0:dev": "layer0 dev",
+    "layer0:build": "layer0 build",
+    "layer0:deploy": "layer0 deploy",
+    "layer0:prod": "layer0 run --production",
+    "format": "prettier '**/*' --ignore-unknown --write"
+  },
+  "dependencies": {
+    "next": "^11.1.0",
+    "next-themes": "^0.0.15",
+    "preact": "10.5.15",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-player": "^2.9.0",
+    "remark": "^12.0.1",
+    "remark-html": "^13.0.1",
+    "remark-prism": "^1.1.14",
+    "storyblok-js-client": "^4.1.5"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 100
+  },
+  "devDependencies": {
+    "@layer0/cli": "^4.5.0",
+    "@layer0/core": "^4.5.0",
+    "@layer0/devtools": "^4.5.0",
+    "@layer0/next": "^4.5.0",
+    "@layer0/prefetch": "^4.5.0",
+    "@layer0/react": "^4.5.0",
+    "@tailwindcss/line-clamp": "^0.2.1",
+    "@tailwindcss/typography": "^0.4.1",
+    "autoprefixer": "^10.2.5",
+    "postcss": "^8.2.10",
+    "prettier": "^2.3.0",
+    "tailwindcss": "^2.1.1"
+  }
+}
