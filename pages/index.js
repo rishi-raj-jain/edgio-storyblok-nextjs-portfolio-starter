@@ -1,3 +1,5 @@
+import { getTagline } from '@/lib/api'
+import { defaultHome } from '@/lib/data'
 import { Fragment } from 'react'
 import NextImage from 'next/image'
 import SEO from '@/components/Seo'
@@ -59,11 +61,14 @@ const Home = ({ homeTagline }) => {
 export default Home
 
 export async function getStaticProps() {
-  const homeFetch = await fetch(`${deploymentUrl}/api/home`)
-  if (!homeFetch.ok) return { notFound: true }
-  const homeData = await homeFetch.json()
-  return {
-    props: { ...homeData },
-    revalidate: 60,
+  // Once deployed directly fetch from the `deployedUrl/api/home`, look at github.com/rishi-raj-jain/rishi.app for future reference.
+  try {
+    const homeTagline = (await getTagline('home')) || defaultHome
+    return {
+      props: { homeTagline },
+      revalidate: 60,
+    }
+  } catch {
+    return { notFound: true }
   }
 }

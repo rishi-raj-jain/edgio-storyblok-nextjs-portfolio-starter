@@ -1,3 +1,5 @@
+import { defaultAbout } from '@/lib/data'
+import { getTagline, getTimelineItems } from '@/lib/api'
 import { Fragment } from 'react'
 import SEO from '@/components/Seo'
 import { deploymentUrl } from '@/lib/data'
@@ -37,11 +39,32 @@ const About = ({ Timeline, aboutTagline }) => {
 export default About
 
 export async function getStaticProps() {
-  const aboutFetch = await fetch(`${deploymentUrl}/api/about`)
-  if (!aboutFetch.ok) return { notFound: true }
-  const aboutData = await aboutFetch.json()
-  return {
-    props: { ...aboutData },
-    revalidate: 60,
+  // Once deployed directly fetch from the `deployedUrl/api/about`, look at github.com/rishi-raj-jain/rishi.app for future reference.
+  try {
+    let arePosts = true,
+      page = 1,
+      Timeline = {}
+    while (arePosts) {
+      let tempTimeline = (await getTimelineItems(5, page)) || []
+      if (tempTimeline.length > 0) {
+        tempTimeline.forEach((a) => {
+          if (Timeline.hasOwnProperty(a.content.Year)) {
+            Timeline[a.content.Year].push(a)
+          } else {
+            Timeline[a.content.Year] = [a]
+          }
+        })
+        page += 1
+      } else {
+        arePosts = false
+      }
+    }
+    const aboutTagline = (await getTagline('about')) || defaultAbout
+    return {
+      props: { Timeline, aboutTagline },
+      revalidate: 60,
+    }
+  } catch {
+    return { notFound: true }
   }
 }

@@ -1,3 +1,5 @@
+import { defaultBlogs } from '@/lib/data'
+import { getAllPostsForHome, getRecommendedPosts, getTagline } from '@/lib/api'
 import Link from 'next/link'
 import SEO from '@/components/Seo'
 import { Prefetch } from '@layer0/react'
@@ -92,11 +94,16 @@ const Blogs = ({ allPosts, recommendedPosts, blogsTagline }) => {
 export default Blogs
 
 export async function getStaticProps() {
-  const blogsFetch = await fetch(`${deploymentUrl}/api/blogs`)
-  if (!blogsFetch.ok) return { notFound: true }
-  const blogsData = await blogsFetch.json()
-  return {
-    props: { ...blogsData },
-    revalidate: 60,
+  // Once deployed directly fetch from the `deployedUrl/api/blogs`, look at github.com/rishi-raj-jain/rishi.app for future reference.
+  try {
+    const allPosts = (await getAllPostsForHome()) || []
+    const recommendedPosts = (await getRecommendedPosts()) || []
+    const blogsTagline = (await getTagline('blogs')) || defaultBlogs
+    return {
+      props: { allPosts, recommendedPosts, blogsTagline },
+      revalidate: 60,
+    }
+  } catch {
+    return { notFound: true }
   }
 }
