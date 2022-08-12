@@ -60,11 +60,7 @@ const Navbar = () => {
         <div className="relative max-w-[258px] overflow-x-scroll sm:overflow-x-hidden sm:max-w-none flex flex-row items-center space-x-5">
           {navLinks.map((item) => (
             <Link href={item.pathname} key={item.name}>
-              <a
-                className={`${
-                  item.hasOwnProperty('class') ? item.class : ''
-                } flex flex-row items-center relative space-x-3`}
-              >
+              <a className={`${item.hasOwnProperty('class') ? item.class : ''} flex flex-row items-center relative space-x-3`}>
                 <span className="text-md font-medium">{item.name}</span>
               </a>
             </Link>

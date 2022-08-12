@@ -1,6 +1,6 @@
-import { skipWaiting, clientsClaim } from 'workbox-core'
-import { precacheAndRoute } from 'workbox-precaching'
 import { Prefetcher } from '@layer0/prefetch/sw'
+import { precacheAndRoute } from 'workbox-precaching'
+import { skipWaiting, clientsClaim } from 'workbox-core'
 
 skipWaiting()
 clientsClaim()

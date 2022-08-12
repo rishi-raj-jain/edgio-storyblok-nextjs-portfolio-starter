@@ -1,9 +1,8 @@
-import { defaultAbout } from '@/lib/data'
-import { getTagline, getTimelineItems } from '@/lib/api'
 import { Fragment } from 'react'
 import SEO from '@/components/Seo'
-import { deploymentUrl } from '@/lib/data'
 import TimelineItem from '@/components/TimelineItem'
+import { getTagline, getTimelineItems } from '@/lib/api'
+import { defaultAbout, deploymentUrl } from '@/lib/data'
 import RichTextResolver from 'storyblok-js-client/dist/rich-text-resolver.cjs'
 
 const About = ({ Timeline, aboutTagline }) => {

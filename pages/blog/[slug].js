@@ -4,8 +4,8 @@ import Author from '@/components/Author'
 import Article from '@/components/Article'
 import markdownToHtml from '@/lib/markdown'
 import DateString from '@/components/DateString'
-import { deploymentUrl, imageLink } from '@/lib/data'
 import { getOtherBlogs, getPost } from '@/lib/api'
+import { deploymentUrl, imageLink } from '@/lib/data'
 const MorePosts = dynamic(() => import('@/components/more-posts'))
 
 export default function Post({ post, morePosts }) {
@@ -28,9 +28,7 @@ export default function Post({ post, morePosts }) {
       <div className="w-full md:max-w-2xl">
         <div className="w-full flex flex-col items-center">
           <DateString date={new Date(SEODetails.pubDate)} />
-          <h1 className="mt-3 mb-7 text-center font-bold text-2xl sm:text-4xl">
-            {post.content.title}
-          </h1>
+          <h1 className="mt-3 mb-7 text-center font-bold text-2xl sm:text-4xl">{post.content.title}</h1>
           <Author post={post} {...SEODetails} />
         </div>
         <div className="mt-7 w-full h-[1px] bg-gray-200"></div>

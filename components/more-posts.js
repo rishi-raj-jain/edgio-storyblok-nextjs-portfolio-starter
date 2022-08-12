@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Prefetch from '@layer0/react/Prefetch'
+import { createNextDataURL } from '@layer0/next/client'
 
 const MorePosts = ({ morePosts }) => {
   const filteredPosts = morePosts.filter((item) => item.hasOwnProperty('name'))
@@ -12,17 +13,8 @@ const MorePosts = ({ morePosts }) => {
         </div>
         {filteredPosts.map((item) => (
           <Link href={`/blog/${item.slug}`} key={item.slug}>
-            <Prefetch
-              url={
-                process.browser
-                  ? `/_next/data/${__NEXT_DATA__.buildId}/blog/${item.slug}.json`
-                  : `/blog/${item.slug}`
-              }
-            >
-              <a
-                href={`/blog/${item.slug}`}
-                className="hover:underline mb-5 block w-full font-bold text-lg"
-              >
+            <Prefetch url={createNextDataURL({ href: '/blog/' + item.slug, routeParams: { slug: item.slug } })}>
+              <a href={`/blog/${item.slug}`} className="hover:underline mb-5 block w-full font-bold text-lg">
                 {item.name}
               </a>
             </Prefetch>

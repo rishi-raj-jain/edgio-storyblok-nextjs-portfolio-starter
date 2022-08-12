@@ -1,9 +1,12 @@
-const { nextRoutes } = require('@layer0/next')
-const { Router } = require('@layer0/core/router')
-const { foreverEdge, assetCache, nextCache } = require('./cache.js')
+import { nextRoutes } from '@layer0/next'
+import { Router } from '@layer0/core/router'
+import { foreverEdge, assetCache, nextCache } from './cache'
 
 // Create a new router
 const router = new Router()
+
+// Not index perma links
+router.noIndexPermalink()
 
 // Serve service worker
 router.get('/service-worker.js', ({ serviceWorker }) => {

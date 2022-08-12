@@ -14,9 +14,7 @@ const SearchBar = ({ content }) => {
             setResults(
               content.filter((item) => {
                 return (
-                  item.content.title.includes(searcValue) ||
-                  item.content.intro.includes(searcValue) ||
-                  item.content.long_text.includes(searcValue)
+                  item.content.title.includes(searcValue) || item.content.intro.includes(searcValue) || item.content.long_text.includes(searcValue)
                 )
               })
             )

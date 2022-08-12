@@ -10,7 +10,7 @@ const SEO = ({
   canonical,
   author,
   faviconImage = `${deploymentUrl}/static/favicon-image.jpg`,
-  children
+  children,
 }) => {
   const Title = `${title ?? defaultTitle}`.trim()
   const Description = `${description ?? defaultDescription}`.trim()
@@ -30,12 +30,7 @@ const SEO = ({
       <meta name="og:image" property="og:image" content={image} />
       <meta name="twitter:image" property="twitter:image" content={image} />
       {profileLinks && profileLinks['twitter'] && (
-        <meta
-          name="twitter:creator"
-          content={`@${
-            profileLinks['twitter'].split('/')[profileLinks['twitter'].split('/').length - 1]
-          }`}
-        />
+        <meta name="twitter:creator" content={`@${profileLinks['twitter'].split('/')[profileLinks['twitter'].split('/').length - 1]}`} />
       )}
       {pubDate && (
         <Fragment>

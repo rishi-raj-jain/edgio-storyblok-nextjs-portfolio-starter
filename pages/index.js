@@ -1,17 +1,15 @@
+import SEO from '@/components/Seo'
+import NextImage from 'next/image'
 import { getTagline } from '@/lib/api'
 import { defaultHome } from '@/lib/data'
-import { Fragment } from 'react'
-import NextImage from 'next/image'
-import SEO from '@/components/Seo'
 import { deploymentUrl } from '@/lib/data'
 import { shimmer, toBase64 } from '@/lib/shimmer'
 import SocialLinks from '@/components/social-links'
-import imageHolder from '../public/static/favicon-image.jpg'
 import RichTextResolver from 'storyblok-js-client/dist/rich-text-resolver.cjs'
 
 const Home = ({ homeTagline }) => {
   return (
-    <Fragment>
+    <>
       <SEO canonical={deploymentUrl} />
       <div className="min-h-[90vh] flex flex-col justify-center md:justify-auto md:flex-row md:items-center">
         <div className="w-full md:w-1/2 flex flex-col items-center md:items-start justify-center">
@@ -27,9 +25,7 @@ const Home = ({ homeTagline }) => {
             />
           </div>
           <h1 className="mt-5 md:mt-0 font-bold text-2xl sm:text-5xl">Jane Doe</h1>
-          <h2 className="text-center md:text-left mt-5 text-lg sm:text-xl text-gray-500 dark:text-white">
-            Creation of Rishi Raj Jain
-          </h2>
+          <h2 className="text-center md:text-left mt-5 text-lg sm:text-xl text-gray-500 dark:text-white">Creation of Rishi Raj Jain</h2>
           <div className="flex flex-row space-x-5">
             <SocialLinks />
           </div>
@@ -43,18 +39,11 @@ const Home = ({ homeTagline }) => {
         </div>
         <div className="hidden md:w-1/2 md:flex flex-col items-end justify-center">
           <div className="filter grayscale">
-            <NextImage
-              width={330}
-              height={440}
-              quality={50}
-              src={imageHolder}
-              placeholder="blur"
-              className="rounded object-cover"
-            />
+            <NextImage width={330} height={440} quality={50} src={'/static/favicon-image.jpg'} placeholder="blur" className="rounded object-cover" />
           </div>
         </div>
       </div>
-    </Fragment>
+    </>
   )
 }
 

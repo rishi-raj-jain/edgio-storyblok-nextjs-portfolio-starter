@@ -1,12 +1,13 @@
-import { defaultBlogs } from '@/lib/data'
-import { getAllPostsForHome, getRecommendedPosts, getTagline } from '@/lib/api'
 import Link from 'next/link'
 import SEO from '@/components/Seo'
 import { Prefetch } from '@layer0/react'
+import { defaultBlogs } from '@/lib/data'
 import { deploymentUrl } from '@/lib/data'
 import SearchBar from '@/components/SearchBar'
 import DateString from '@/components/DateString'
+import { createNextDataURL } from '@layer0/next/client'
 import RichTextResolver from 'storyblok-js-client/dist/rich-text-resolver.cjs'
+import { getAllPostsForHome, getRecommendedPosts, getTagline } from '@/lib/api'
 
 const Blogs = ({ allPosts, recommendedPosts, blogsTagline }) => {
   const SEODetails = {
@@ -29,41 +30,21 @@ const Blogs = ({ allPosts, recommendedPosts, blogsTagline }) => {
         <div className="flex flex-row flex-wrap">
           <div className="mt-10 lg:mt-20 w-full lg:w-2/3 lg:pr-10 flex flex-col">
             {allPosts.map((item) => (
-              <div
-                key={`/blog/${item.slug}`}
-                className="border-b dark:border-gray-700 pb-10 mb-10 flex flex-col"
-              >
+              <div key={`/blog/${item.slug}`} className="border-b dark:border-gray-700 pb-10 mb-10 flex flex-col">
                 <span className="dark:text-gray-400 text-gray-700">
                   <DateString date={new Date(item.first_published_at)} />
                 </span>
                 <Link href={`/blog/${item.slug}`}>
-                  <Prefetch
-                    url={
-                      process.browser
-                        ? `/_next/data/${__NEXT_DATA__.buildId}/blog/${item.slug}.json`
-                        : `/blog/${item.slug}`
-                    }
-                  >
+                  <Prefetch url={createNextDataURL({ href: '/blog/' + item.slug, routeParams: { slug: item.slug } })}>
                     <a className="mt-3 hover:underline" href={`/blog/${item.slug}`}>
                       <span className="font-bold text-lg sm:text-2xl">{item.content.title}</span>
                     </a>
                   </Prefetch>
                 </Link>
-                <span className="mt-3 dark:text-gray-400 text-gray-700 line-clamp-2 text-sm">
-                  {item.content.intro}
-                </span>
+                <span className="mt-3 dark:text-gray-400 text-gray-700 line-clamp-2 text-sm">{item.content.intro}</span>
                 <Link href={`/blog/${item.slug}`}>
-                  <Prefetch
-                    url={
-                      process.browser
-                        ? `/_next/data/${__NEXT_DATA__.buildId}/blog/${item.slug}.json`
-                        : `/blog/${item.slug}`
-                    }
-                  >
-                    <a
-                      href={`/blog/${item.slug}`}
-                      className="hover:underline text-blue-500 mt-5 uppercase text-sm"
-                    >
+                  <Prefetch url={createNextDataURL({ href: '/blog/' + item.slug, routeParams: { slug: item.slug } })}>
+                    <a href={`/blog/${item.slug}`} className="hover:underline text-blue-500 mt-5 uppercase text-sm">
                       Read More &rarr;
                     </a>
                   </Prefetch>
