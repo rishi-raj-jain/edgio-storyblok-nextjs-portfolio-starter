@@ -20,7 +20,7 @@ const SearchBar = ({ content }) => {
             )
         }}
         placeholder="Search Posts..."
-        className="border dark:border-gray-600 outline-none rounded-lg bg-white py-2 px-5 bg-white dark:bg-black text-sm w-1/2"
+        className="border dark:border-gray-600 outline-none rounded-lg py-2 px-5 bg-white dark:bg-black text-sm w-1/2"
       />
       {searcValue.length > 0 && results.length > 0 && (
         <div className="mt-2 shadow top-10">
