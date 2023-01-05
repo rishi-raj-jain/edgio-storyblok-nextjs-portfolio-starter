@@ -2,7 +2,7 @@ import '@/styles/global.css'
 import { useEffect } from 'react'
 import Navbar from '@/components/Navbar'
 import { ThemeProvider } from 'next-themes'
-import { install, prefetch } from '@layer0/prefetch/window'
+import { install, prefetch } from '@edgio/prefetch/window'
 
 const MyApp = ({ Component, pageProps }) => {
   useEffect(() => {

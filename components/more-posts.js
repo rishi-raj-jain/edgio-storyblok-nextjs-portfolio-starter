@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import Prefetch from '@layer0/react/Prefetch'
-import { createNextDataURL } from '@layer0/next/client'
+import Prefetch from '@edgio/react/Prefetch'
+import { createNextDataURL } from '@edgio/next/client'
 
 const MorePosts = ({ morePosts }) => {
   const filteredPosts = morePosts.filter((item) => item.hasOwnProperty('name'))

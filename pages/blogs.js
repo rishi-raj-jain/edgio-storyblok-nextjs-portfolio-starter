@@ -1,11 +1,11 @@
 import Link from 'next/link'
 import SEO from '@/components/Seo'
-import { Prefetch } from '@layer0/react'
+import { Prefetch } from '@edgio/react'
 import { defaultBlogs } from '@/lib/data'
 import { deploymentUrl } from '@/lib/data'
 import SearchBar from '@/components/SearchBar'
 import DateString from '@/components/DateString'
-import { createNextDataURL } from '@layer0/next/client'
+import { createNextDataURL } from '@edgio/next/client'
 import RichTextResolver from 'storyblok-js-client/dist/rich-text-resolver.cjs'
 import { getAllPostsForHome, getRecommendedPosts, getTagline } from '@/lib/api'
 

@@ -1,16 +1,13 @@
-import { nextRoutes } from '@layer0/next'
-import { Router } from '@layer0/core/router'
+import { nextRoutes } from '@edgio/next'
+import { Router } from '@edgio/core/router'
 import { foreverEdge, assetCache, nextCache } from './cache'
 
 // Create a new router
-const router = new Router()
-
-// Not index perma links
-router.noIndexPermalink()
+const router = new Router({ indexPermalink: false })
 
 // Serve service worker
 router.get('/service-worker.js', ({ serviceWorker }) => {
-  return serviceWorker('.next/static/service-worker.js')
+  serviceWorker('.next/static/service-worker.js')
 })
 
 // Cache assets
